@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Net Income Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <header>
+            <h1>Net Income Calculator</h1>
+            <p>Calculate your take-home pay after taxes and deductions</p>
+        </header>
+
+        <form id="taxForm" class="input-form">
+            <div class="input-group">
+                <label for="income">Annual Income (€)</label>
+                <input type="number" id="income" placeholder="e.g. 25000" required>
+            </div>
+
+            <div class="input-group">
+                <label for="birthdate">Date of Birth</label>
+                <input type="date" id="birthdate" required>
+            </div>
+
+            <div class="input-group">
+                <label for="children">Number of Children</label>
+                <input type="number" id="children" min="0" placeholder="Enter number of children" required>
+            </div>
+
+            <button type="button" class="calculate-btn" onclick="calculate()">
+                Calculate Net Income
+            </button>
+        </form>
+
+        <div id="result" class="results-container">
+            <h2>Your Results</h2>
+            
+            <div class="result-grid">
+                <div class="result-item">
+                    <span>Annual Income</span>
+                    <span id="totalIncome" class="amount">€0.00</span>
+                </div>
+                
+                <div class="result-item highlight">
+                    <span>Tax-Free Allowance</span>
+                    <span id="taxFree" class="amount">€4,000.00</span>
+                </div>
+                
+                <div class="result-item">
+                    <span>Taxable Income</span>
+                    <span id="taxableIncome" class="amount">€0.00</span>
+                </div>
+                
+                <div class="result-item">
+                    <span>Initial Tax (32%)</span>
+                    <span id="tax" class="amount tax">€0.00</span>
+                </div>
+                
+                <div class="result-item highlight">
+                    <span>Total Discount</span>
+                    <span id="discount" class="amount discount">0%</span>
+                </div>
+                
+                <div class="result-item">
+                    <span>Final Tax Due</span>
+                    <span id="finalTax" class="amount tax">€0.00</span>
+                </div>
+                
+                <div class="result-item total">
+                    <strong>Net Income</strong>
+                    <strong id="netIncome" class="amount total">€0.00</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

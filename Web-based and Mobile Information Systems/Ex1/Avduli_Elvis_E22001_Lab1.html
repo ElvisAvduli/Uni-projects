@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Landing Page</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .header {
+            background-color: #1abc9c;
+            padding: 20px;
+            color: white;
+        }
+        .header img {
+            width: 150px;
+        }
+        .section {
+            padding: 40px;
+            color: white;
+        }
+        .about {
+            background-color: #474e5d;
+        }
+        .projects {
+            background-color: #2f2f2f;
+        }
+        .contact {
+            background-color: #242424;
+        }
+        table {
+            margin: auto;
+            width: 80%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid white;
+            padding: 10px;
+        }
+        input, textarea, select {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .footer {
+            background-color: #2f2f2f;
+            color: white;
+            padding: 20px;
+        }
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            let name = document.getElementById("name").value;
+            let surname = document.getElementById("surname").value;
+            let email = document.getElementById("email").value;
+            let message = document.getElementById("message").value;
+            let regex = /^[a-zA-Zα-ωΑ-Ω ]+$/;
+            
+            if (!regex.test(name) || !regex.test(surname)) {
+                alert("Το όνομα και το επίθετο πρέπει να περιέχουν μόνο γράμματα.");
+                return false;
+            }
+            if (!email.includes("@")) {
+                alert("Παρακαλώ εισάγετε έγκυρο email.");
+                return false;
+            }
+            if (message.length < 10) {
+                alert("Το μήνυμα πρέπει να είναι τουλάχιστον 10 χαρακτήρες.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="header" id="header">
+        <h1>Welcome to Our Company</h1>
+        <a href="#header">Home</a> |
+        <a href="#about"> About Us</a> |
+        <a href="#projects"> Our Projects </a> | 
+        <a href="#contact">Contact Us</a>
+    </div>
+    
+    <div class="section about" id="about">
+        <h2>About Us</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/008/214/517/small_2x/abstract-geometric-logo-or-infinity-line-logo-for-your-company-free-vector.jpg" alt="HTML5 Logo" width="200">
+    </div>
+    
+    <div class="section projects" id="projects">
+        <h2>Our Projects</h2>
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Domain</th>
+                <th>Date</th>
+                <th>Days to complete</th>
+            </tr>
+            <tr>
+                <td>Neural Networks</td>
+                <td>Deep Learning</td>
+                <td>29/03/2022</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>Natural Language Processing</td>
+                <td>Artificial Intelligence</td>
+                <td>31/03/2022</td>
+                <td>60</td>
+            </tr>
+            <tr>
+                <td>Tensorflow</td>
+                <td>Open Source Tools</td>
+                <td>31/12/2021</td>
+                <td>45</td>
+            </tr>
+            <tr>
+                <td>Eshop</td>
+                <td>Web Developing</td>
+                <td>31/01/2022</td>
+                <td>40</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="section contact" id="contact">
+        <h2>Contact Us</h2>
+        <form onsubmit="return validateForm()">
+            <label>Όνομα:</label>
+            <input type="text" id="name" required>
+            <label>Επίθετο:</label>
+            <input type="text" id="surname" required>
+            <label>Email:</label>
+            <input type="email" id="email" required>
+            <label>Μήνυμα:</label>
+            <textarea id="message" rows="4" required></textarea>
+            <label>Επιλογή Φύλου:</label>
+            <select>
+                <option value="male">Άνδρας</option>
+                <option value="female">Γυναίκα</option>
+                <option value="other">Άλλο</option>
+            </select>
+            <button type="submit">Αποστολή</button>
+        </form>
+    </div>
+    
+    <div class="footer">
+        <p>Τηλέφωνο: <a href="tel:+30123456789">+30 1234 56789</a></p>
+        <p>Email: <a href="mailto:e22001@unipi.gr">e22001@unipi.gr</a></p>
+        <p>Διεύθυνση: <a href="https://maps.app.goo.gl/rULdtZJFPvBjLciv7" target="_blank">Καραολή και Δημητρίου 80, Πειραιάς 185 34</a></p>
+    </div>
+</body>
+</html>

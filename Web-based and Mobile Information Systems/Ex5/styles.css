@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f0f4f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #43a047;
+    color: white;
+    padding: 2rem 1rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header p {
+    margin-top: 0.5rem;
+    font-weight: 300;
+}
+
+section {
+    background: white;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 1000px;
+    border-radius: 12px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #2E7D32;
+    margin-bottom: 1.5rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #66bb6a;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+}
+
+select, button {
+    padding: 10px 16px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+button {
+    background-color: #43a047;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #388e3c;
+}
+
+#product-details-container {
+    margin-top: 1rem;
+}
+
+.product-details {
+    background-color: #eef6f0;
+    border: 1px solid #c8e6c9;
+    border-radius: 10px;
+    padding: 1.5rem;
+}
+
+.product-details h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: #2E7D32;
+}
+
+.product-details p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+}
+
+.product-details p strong::before {
+    content: '🔹 ';
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    section {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    form {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .product-details {
+        font-size: 0.95rem;
+    }
+}
