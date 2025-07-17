@@ -1,0 +1,280 @@
+
+
+
+
+Education                                                    E.A. Avduli
+Internet-Draft                                     University of Piraeus
+Intended status: Informational                             26 April 2025
+Expires: 28 October 2025
+
+
+        Custom Communication Protocol for Arithmetic Operations
+                        draft-avduli-protocol-00
+
+Abstract
+
+   This document describes a custom protocol that runs on port 12000 for
+   client-server communication over TCP that supports arithmetic
+   operations such as multiplication, average, and subtraction.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 28 October 2025.
+
+Copyright Notice
+
+   Copyright (c) 2025 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+
+
+
+
+
+Avduli                   Expires 28 October 2025                [Page 1]
+
+Internet-Draft  Custom Communication Protocol for Arithm      April 2025
+
+
+Table of Contents
+
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+     1.1.  Requirements Language . . . . . . . . . . . . . . . . . .   2
+   2.  Terminology . . . . . . . . . . . . . . . . . . . . . . . . .   2
+   3.  Protocol Overview . . . . . . . . . . . . . . . . . . . . . .   3
+   4.  Protocol Header Format  . . . . . . . . . . . . . . . . . . .   3
+     4.1.  Request Message Format  . . . . . . . . . . . . . . . . .   3
+     4.2.  Response Message Format . . . . . . . . . . . . . . . . .   3
+   5.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   4
+   6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   4
+   7.  Security Considerations . . . . . . . . . . . . . . . . . . .   4
+   8.  Informative References  . . . . . . . . . . . . . . . . . . .   4
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   4
+
+1.  Introduction
+
+   This protocol enables a client to send an operation type and
+   numerical data to a server, which performs the requested arithmetic
+   operation and returns the result.
+
+   This document follows the keyword use as specified in RFC2119
+   [RFC2119].
+
+   The remainder of this document SHOULD be organized as follows.
+   Section 2 explains the terminology.  Section 3 provides an overview
+   of message exchange.  Section 4 describes header formats.
+
+1.1.  Requirements Language
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+   document are to be interpreted as described in RFC2119 [RFC2119].
+
+2.  Terminology
+
+   This document uses the following terms:
+
+      Protocol - A pre-approved communication language between two end
+      systems.
+
+      Server - Receives requests and performs the specified arithmetic
+      operation.
+
+      Client - Sends operation request and data to the server.
+
+      Operation Type - A numeric identifier specifying which arithmetic
+
+
+
+
+Avduli                   Expires 28 October 2025                [Page 2]
+
+Internet-Draft  Custom Communication Protocol for Arithm      April 2025
+
+
+      operation to execute: 1 (Multiplication), 2 (Average), 3
+      (Subtraction).
+
+      Status Code - A byte indicating success (0) or error (1).
+
+      byte - An 8-bit octet.
+
+3.  Protocol Overview
+
+   Figure 1 provides a detailed high-level overview of the message
+   exchange.
+
+                         Client                             Server
+                            |                                  |
+                            | Operation Type + Data Payload    |
+                            | -------------------------------->|
+                            |                                  |
+                            |       Response (Status + Data)   |
+                            |<-------------------------------- |
+
+                         Figure 1: Message Exchange
+
+4.  Protocol Header Format
+
+   The protocol defines two primary message formats: request and
+   response.
+
+4.1.  Request Message Format
+
+      0                   1                   2                   3
+      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     | Op Type (1B)  | # Values (1B) |          Values...            |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+                          Figure 2: Request Format
+
+   *  Op Type - 1 byte: Indicates the operation (1=Multiplication,
+      2=Average, 3=Subtraction).
+
+   *  # Values - 1 byte: Number of following integers.
+
+   *  Values - Variable length: List of integers (each 4 bytes).
+
+4.2.  Response Message Format
+
+
+
+
+
+
+Avduli                   Expires 28 October 2025                [Page 3]
+
+Internet-Draft  Custom Communication Protocol for Arithm      April 2025
+
+
+      0                   1                   2                   3
+      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     | Op Type (1B)  | Status Code(1B)|          Result/Error...     |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+                         Figure 3: Response Format
+
+   *  Op Type - 1 byte: Repeats the request's operation type.
+
+   *  Status Code - 1 byte: 0 for success, 1 for error (e.g., division
+      by zero).
+
+   *  Result/Error - 4 bytes: The result of the operation or error code/
+      message.
+
+5.  Acknowledgements
+
+   The author would like to acknowledge all contributors who helped with
+   the design and implementation of this protocol.
+
+6.  IANA Considerations
+
+   This memo makes no requests to IANA.
+
+7.  Security Considerations
+
+   This protocol is intended for educational and experimental use only.
+
+   It lacks encryption, authentication, and data integrity checks.  All
+   messages are transmitted in cleartext.
+
+   Do not deploy in production environments.
+
+8.  Informative References
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/info/rfc2119>.
+
+Author's Address
+
+   Elvis Avduli
+   University of Piraeus
+   Department of Digital Systems
+   18534 Piraeus
+   Greece
+
+
+
+Avduli                   Expires 28 October 2025                [Page 4]
+
+Internet-Draft  Custom Communication Protocol for Arithm      April 2025
+
+
+   Email: e22001@unipi.gr
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Avduli                   Expires 28 October 2025                [Page 5]
