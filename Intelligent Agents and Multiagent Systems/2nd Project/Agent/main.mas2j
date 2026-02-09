@@ -1,0 +1,11 @@
+MAS multi_agent_system {
+
+    infrastructure: Centralised
+
+    environment: GridEnvironment("static")
+
+    agents: agent_1 agent.asl;
+            agent_2 agent.asl;
+
+    aslSourcePath: "src/asl";
+}

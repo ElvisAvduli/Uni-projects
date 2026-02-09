@@ -1,0 +1,12 @@
+MAS intelligent_agent_system {
+
+    infrastructure: Centralised
+
+    environment: GridEnvironment("static")
+    
+    agents:
+        practical_reasoning_agent;
+    
+    aslSourcePath:
+        "src/asl";
+}
