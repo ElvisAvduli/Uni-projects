@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marketplace DApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-glow bg-glow-a"></div>
+    <div class="bg-glow bg-glow-b"></div>
+
+    <main class="container">
+      <header class="hero">
+        <p class="kicker">Blockchain Lab</p>
+        <h1>Marketplace DApp</h1>
+        <p class="subtitle">
+          List products on-chain and buy them using MetaMask on a local Ganache network.
+        </p>
+        <button id="connectWalletBtn" class="btn btn-primary">Connect MetaMask</button>
+        <p id="walletAddress" class="wallet">Wallet: Not connected</p>
+      </header>
+
+      <section class="panel">
+        <h2>List New Product</h2>
+        <form id="listProductForm" class="form-grid">
+          <label>
+            Product Name
+            <input id="productName" type="text" placeholder="e.g. Wireless Keyboard" required />
+          </label>
+          <label>
+            Price (ETH)
+            <input id="productPrice" type="number" min="0.000000000000000001" step="0.0001" placeholder="0.05" required />
+          </label>
+          <button type="submit" class="btn btn-accent">List Product</button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="products-head">
+          <h2>Products For Sale</h2>
+          <button id="refreshBtn" class="btn btn-secondary" type="button">Refresh</button>
+        </div>
+        <div id="productsContainer" class="products-grid"></div>
+      </section>
+
+      <p id="statusMessage" class="status"></p>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.10.4/dist/web3.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
